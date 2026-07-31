@@ -3,6 +3,7 @@
  * @return {string[]}
  */
 var letterCombinations = function (digits) {
+    if (!digits.length) return;
     let letters = {
         2: "abc",
         3: "def",
