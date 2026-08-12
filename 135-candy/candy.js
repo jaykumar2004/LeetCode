@@ -5,32 +5,39 @@
 var candy = function (arr) {
 
     let n = arr.length;
-    let ltr = Array(n).fill(1);
+    let ans = n;
+    let i = 1;
 
-    for (let i = 1; i < n; i++) {
-        if (arr[i] > arr[i - 1]) {
-            ltr[i] = ltr[i - 1] + 1;
+    while (i < n) {
+
+        if (arr[i] === arr[i - 1]) {
+            ++i;
+            continue;
         }
-    }
 
-    let rtl = Array(n).fill(1);
-    for (let i = n - 2; i >= 0; i--) {
-        if (arr[i] > arr[i + 1]) {
-            rtl[i] = rtl[i + 1] + 1;
-
+        let count = 0;
+        while (arr[i] > arr[i - 1]) {
+            ++count;
+            ans = ans + count;
+            ++i
         }
+
+        let count2 = 0;
+
+        while (arr[i] < arr[i - 1]) {
+            ++count2;
+            ans = ans + count2;
+            ++i
+        }
+
+        ans = ans - Math.min(count, count2)
+
     }
 
-    let ans = 0;
-    for (let i = 0; i < n; i++) {
-        ans += Math.max(rtl[i], ltr[i]);
-    }
 
     return ans;
 
-
 };
-
 
 
 
